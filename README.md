@@ -2,7 +2,7 @@
 
 You should follow the below instructions to start your assignment 
 
-1.  Each group of students needs to create a **private github repository** for their assignment. Any student in a group can create a github repository and add the other two members as collaborators.
+1.  Each group of students needs to create a **private github repository** for their assignment. Any student in a group can create a github repository and add the other two members as collaborators. Create the GitHub repository with the same group name as in OnQ.
 
 2. After creating the repository, you must copy the content from the [app directory](./app/) to initiate your project which contains the boilerplate code. You must use this directory's content as the starting point for your assignment. Once you have copied the content, proceed to run the project by following the instructions provided in the [How to Run](how-to-run.md) link.
 

@@ -4,7 +4,7 @@ You should follow the below instructions to start your assignment
 
 1.  Each group of students needs to create a github repository for their assignment. Any student in a group can create a github repository and add the other two members as collaborators.
 
-2. After creating the repository, you must copy the content from the [app directory](./app/) to initiate your project. You must use this directory's content as the starting point for your assignment. Once you have copied the content, proceed to run the project by following the instructions provided in the [How to Run](how-to-run.md) link.
+2. After creating the repository, you must copy the content from the [app directory](./app/) to initiate your project which contains the boilerplate code. You must use this directory's content as the starting point for your assignment. Once you have copied the content, proceed to run the project by following the instructions provided in the [How to Run](how-to-run.md) link.
 
 3. In your repository, you must add your instructor and head TA, as well as the group-specific TA as collaborators. Your instructor's username is **anwardr** and the head TA's username is **devshafi**. We will soon provide the username of your group-specific TA.
 

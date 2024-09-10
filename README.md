@@ -9,7 +9,7 @@ You should follow the below instructions to start your assignment
 3. In your repository, you must add your instructor and head TA, as well as the group-specific TA as collaborators. Your instructor's username is **anwardr** and the head TA's username is **devshafi**. We will soon provide the username of your group-specific TA.
 
 
- ❗*Important*: When you start working on your assignment project, make sure you all are contributing equally. As we are using github, we can track how much contribution is made by an individual student. So, to get a good point in assignment you have to contribute to this repository.
+ ❗*Important*: When you start working on your project assignment, make sure you all are contributing equally. As we are using github, we can track how much contribution is made by an individual student. So, to get a good grade in assignment you have to contribute to this repository.
 
  💡💡💡 Project Ideas: For projects ideas, you can refer to the [project-ideas.md](./project-ideas.md) file.
 

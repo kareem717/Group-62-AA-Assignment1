@@ -123,5 +123,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+#Ignore macOS system files
+.DS_Store
+
 # node modules
 node_modules/

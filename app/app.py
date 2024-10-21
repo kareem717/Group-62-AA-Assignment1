@@ -13,5 +13,13 @@ def index():
 def static_files(filename):
     return send_from_directory(app.static_folder, filename)
 
+@app.route('/sign-up', methods=['GET'])
+def signup():
+    return render_template('sign-up.html')
+
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('login.html')
+
 if __name__ == '__main__':
     app.run(debug=True, port=5007)

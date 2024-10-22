@@ -1,10 +1,9 @@
-import uuid
-
+import random
 
 class Account:
-    def __init__(self, first_name, last_name):
+    def __init__(self, email, password):
         # Generate random user id
-        self.user_id = uuid.uuid4()
+        self.id = random.randint(1, 1000000)
 
-        self.first_name = first_name
-        self.last_name = last_name
+        self.email = email
+        self.password = password

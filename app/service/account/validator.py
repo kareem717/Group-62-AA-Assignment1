@@ -1,5 +1,10 @@
 from entities.account import Account
 from storage.storage import AccountStorage
+from ..exceptions import (
+    InvalidEmailException,
+    InvalidPasswordException,
+    AccountAlreadyExistsException,
+)
 
 
 class AccountValidator:
@@ -7,12 +12,14 @@ class AccountValidator:
     def __init__(self, storage: AccountStorage):
         self._storage = storage
 
-    def validate(self, account: Account) -> bool:
-        if account.first_name is None or account.first_name == "":
-            return False
-        if account.last_name is None or account.last_name == "":
-            return False
-        if self._storage.find_by_user_name(account.user_name):
-            return False
-        return True
-# 
+    def validate(self, account: Account) -> Exception | None:
+        if account.email is None or account.email == "":
+            return InvalidEmailException()
+        if account.password is None or account.password == "":
+            return InvalidPasswordException()
+        if self._storage.find_by_email(account.email):
+            return AccountAlreadyExistsException()
+        return None
+
+
+#

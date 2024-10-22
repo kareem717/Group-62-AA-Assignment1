@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkySeat - Search Flights</title>
+  <link rel="icon" type="image/png" href="/static/images/skyseat-favicon1.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- header with logo and title -->
+  <header class="flex items-center p-4">
+    <img src="/static/images/skyseat-favicon1.png" alt="SkySeat Logo" class="w-12 h-12 mr-2">
+    <h1 class="text-3xl font-bold text-black">SkySeat</h1>
+  </header>
+
+  <!-- search bar -->
+  <div class="flex justify-center mt-6">
+    <div class="relative w-3/4 lg:w-1/2">
+      <input type="text" placeholder="Search flights..." class="w-full py-3 px-4 rounded-full border border-gray-300 shadow-lg focus:outline-none">
+      <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+        &times;
+      </button>
+    </div>
+  </div>
+
+  <!-- flight listings -->
+  <div class="mt-8 mx-auto max-w-4xl">
+    <!-- flight item 1 -->
+    <div class="flex items-center justify-between bg-white p-4 rounded-lg shadow-md mb-4">
+      <div class="flex items-center">
+        <img src="/static/images/Overview-Berlin.jpg" alt="Berlin" class="w-16 h-16 rounded-full mr-4">
+        <p class="font-semibold text-lg bg-black text-white py-2 px-4 rounded-full">YYZ → BER: DPT 10/01/24 @ 20:10 EST</p>
+      </div>
+      <div class="text-right">
+        <p class="text-green-500 font-semibold">16 Seats Available</p>
+        <button class="bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800">Purchase →</button>
+      </div>
+    </div>
+
+    <!-- flight item 2 -->
+    <div class="flex items-center justify-between bg-white p-4 rounded-lg shadow-md mb-4">
+      <div class="flex items-center">
+        <img src="/static/images/Tokyo.png" alt="Tokyo" class="w-16 h-16 rounded-full mr-4">
+        <p class="font-semibold text-lg bg-black text-white py-2 px-4 rounded-full">YYZ → HND: DPT 10/01/24 @ 14:00 EST</p>
+      </div>
+      <div class="text-right">
+        <p class="text-yellow-500 font-semibold">4 Seats Available</p>
+        <button class="bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800">Purchase →</button>
+      </div>
+    </div>
+
+    <!-- flight item 3 -->
+    <div class="flex items-center justify-between bg-white p-4 rounded-lg shadow-md mb-4">
+      <div class="flex items-center">
+        <img src="/static/images/Sydney.png" alt="Sydney" class="w-16 h-16 rounded-full mr-4">
+        <p class="font-semibold text-lg bg-black text-white py-2 px-4 rounded-full">YYZ → SYD: DPT 10/01/24 @ 16:49 EST</p>
+      </div>
+      <div class="text-right">
+        <p class="text-red-500 font-semibold">1 Seat Available</p>
+        <button class="bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800">Purchase →</button>
+      </div>
+    </div>
+  </div>
+  <!-- back button -->
+  <div class="flex justify-center mt-10">
+    <a href="/">
+      <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-6 rounded hover:bg-gray-400 transition">
+        Back to Home
+      </button>
+    </a>
+  </div>
+
+</body>
+</html>

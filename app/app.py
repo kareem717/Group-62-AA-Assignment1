@@ -1,25 +1,38 @@
 from flask import Flask, render_template, request, send_from_directory
+from service.account.service import AccountService
+from ui.auth.auth_controller import AuthController
+from ui.home.home_controller import HomeController
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder="static")
 
-@app.route('/', methods=['GET', 'POST'])
+
+account_service = AccountService()
+auth_controller = AuthController(account_service)
+home_controller = HomeController(account_service)
+
+
+@app.route("/", methods=["GET"])
 def index():
-    if request.method == 'POST':
-        user_input = request.form['user_input']
-        return render_template('index.html', user_input=user_input)
-    return render_template('index.html', user_input=None)
+    return home_controller.get_home_page()
 
-@app.route('/static/<path:filename>')
+
+@app.route("/static/<path:filename>")
 def static_files(filename):
     return send_from_directory(app.static_folder, filename)
 
-@app.route('/sign-up', methods=['GET'])
+
+@app.route("/sign-up", methods=["GET", "POST"])
 def signup():
-    return render_template('sign-up.html')
+    if request.method == "POST":
+        return auth_controller.create_account(request.form)
+    if request.method == "GET":
+        return auth_controller.get_create_account_form()
 
-@app.route('/login', methods=['GET'])
+
+@app.route("/login", methods=["GET"])
 def login():
-    return render_template('login.html')
+    return render_template("/auth/login.html")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(debug=True, port=5007)

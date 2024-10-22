@@ -1,4 +1,6 @@
 import random
+from datetime import datetime
+
 
 class Account:
     def __init__(self, email, password):
@@ -7,3 +9,6 @@ class Account:
 
         self.email = email
         self.password = password
+        self.created_at = datetime.now()
+        self.updated_at = None
+        self.deleted_at = None

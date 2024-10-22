@@ -39,6 +39,9 @@
 						class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
 						placeholder="Enter your email"
 					/>
+					{% if errors and errors.get_error("email") %}
+					<p class="text-red-500 text-sm">{{ errors.get_error("email") }}</p>
+					{% endif %}
 				</div>
 
 				<!-- password input -->
@@ -53,6 +56,9 @@
 						class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
 						placeholder="Enter your password"
 					/>
+					{% if errors and errors.get_error("password") %}
+					<p class="text-red-500 text-sm">{{ errors.get_error("password") }}</p>
+					{% endif %}
 				</div>
 
 				<!-- terms & conditions checkbox -->
@@ -66,6 +72,9 @@
 					<label for="terms" class="ml-2 text-gray-700"
 						>I have read the Terms & Conditions and I agree</label
 					>
+					{% if errors and errors.get_error("terms") %}
+					<p class="text-red-500 text-sm">{{ errors.get_error("terms") }}</p>
+					{% endif %}
 				</div>
 
 				<!-- sign up button -->

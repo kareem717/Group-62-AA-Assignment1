@@ -6,7 +6,16 @@ from storage.storage import Storage, AccountStorage
 class SqliteStorage(Storage):
 
     DB_FILE = ":memory:"
-    CREATE_ACCOUNTS_TABLE_STATEMENT = "CREATE TABLE IF NOT EXISTS accounts (id INTEGER PRIMARY KEY, email TEXT, password TEXT)"
+    CREATE_ACCOUNTS_TABLE_STATEMENT = """
+    CREATE TABLE IF NOT EXISTS accounts (
+        id SERIAL PRIMARY KEY, 
+        email TEXT NOT NULL, 
+        password TEXT NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP,
+        deleted_at TIMESTAMP
+    )
+    """
 
     def __init__(self):
         print("Initializing SqliteStorage")
@@ -29,10 +38,10 @@ class SqliteAccountStorage(SqliteStorage):
         account_id = cursor.lastrowid
         cursor.close()
         self._connection.commit()
-        account.account_id = account_id
+        account.id = account_id
         return account_id
 
-    def find_by_email(self, email: str) -> Account:
+    def get_by_email(self, email: str) -> Account | None:
         cursor = self._connection.cursor()
         cursor.execute(
             "SELECT * FROM accounts WHERE email = ?",

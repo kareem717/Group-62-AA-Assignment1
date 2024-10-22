@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, request, send_from_directory
+import json
 from service.account.service import AccountService
 from ui.auth.auth_controller import AuthController
 from ui.home.home_controller import HomeController
@@ -29,9 +30,12 @@ def signup():
         return auth_controller.get_create_account_form()
 
 
-@app.route("/login", methods=["GET"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("/auth/login.html")
+    if request.method == "POST":
+        return auth_controller.authenticate(request.form)
+    if request.method == "GET":
+        return auth_controller.get_login_form()
 
 
 if __name__ == "__main__":

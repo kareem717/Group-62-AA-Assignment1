@@ -45,6 +45,8 @@ class AccountService:
     def authenticate(self, email: str, password: str) -> tuple[Account, ErrorMap]:
         account = self._account_storage.get_by_email(email)
         if account is None or account.password != hash_password(password):
-            return Account(), ErrorMap().add_error("email", "Invalid email or password")
+            error_map = ErrorMap()
+            error_map.add_error("info", "Invalid email or password")
+            return Account(email="", password=""), error_map
 
         return account, ErrorMap()

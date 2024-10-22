@@ -1,6 +1,6 @@
 from entities.account import Account
 from flask import render_template
-
+import json
 
 class AuthController:
     def __init__(self, account_service):
@@ -31,10 +31,12 @@ class AuthController:
         )
 
         if error_map.has_errors():
-            return render_template("/auth/sign-in.html", errors=error_map)
+            return render_template("/auth/login.html", errors=error_map)
         else:
             return render_template("/home/home.html", account=account)
 
     def get_create_account_form(self):
         return render_template("/auth/sign-up.html", errors=None)
-        
+
+    def get_login_form(self):
+        return render_template("/auth/login.html", errors=None)

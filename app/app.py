@@ -21,9 +21,5 @@ def signup():
 def login():
     return render_template('login.html')
 
-@app.route('/flight-search')
-def search_flights():
-    return render_template('flight-search.html')
-
 if __name__ == '__main__':
     app.run(debug=True, port=5007)

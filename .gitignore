@@ -128,3 +128,6 @@ cython_debug/
 
 # node modules
 node_modules/
+
+# pytest cache
+.pytest_cache/

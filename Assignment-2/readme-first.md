@@ -54,10 +54,10 @@ npm install
 
 ### 4. Install Python Dependencies
 
-Make sure all the Python dependencies are installed:
+Make sure all the Python dependencies are installed (requirements.txt is in dir 'app'):
 
 ```bash
-pip install -r requirements.txt
+pip install -r app/requirements.txt
 ```
 
 ### 5. Running the Application

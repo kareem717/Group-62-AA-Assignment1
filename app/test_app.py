@@ -1,9 +1,6 @@
 import pytest
 from service.account.service import AccountService
 from entities.account import Account
-import requests
-from presentation.auth.auth_controller import AuthController
-import os
 from app import app
 
 
@@ -30,7 +27,7 @@ def test_create_account_success(account_service):
 def test_create_accout_missing_terms(account_service):
     account = Account(email="newuser@example.com", password="password123")
     terms = False
-    
+
     account_id, error_map = account_service.create(account, terms)
 
     assert account_id == 0

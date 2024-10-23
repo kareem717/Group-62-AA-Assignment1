@@ -3,6 +3,8 @@ from service.account.service import AccountService
 from presentation.auth.auth_controller import AuthController
 from presentation.home.home_controller import HomeController
 import os
+from service.flight.service import FlightService
+from presentation.flights.flight_controller import FlightController
 
 app = Flask(__name__, static_folder="static")
 
@@ -12,6 +14,9 @@ app.secret_key = os.getenv("SESSION_SECRET")
 account_service = AccountService()
 auth_controller = AuthController(account_service)
 home_controller = HomeController(account_service)
+
+flight_service = FlightService()
+flight_controller = FlightController(flight_service)
 
 JWT_SECRET = os.getenv("JWT_SECRET")
 
@@ -45,6 +50,11 @@ def login():
 @app.route("/logout", methods=["GET"])
 def logout():
     return auth_controller.logout()
+
+
+@app.route("/flights", methods=["GET"])
+def flights():
+    return flight_controller.get_flights()
 
 
 if __name__ == "__main__":

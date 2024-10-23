@@ -28,42 +28,37 @@
 				Flight Ticket Booking Made Simple
 			</p>
 
-			<!-- Buttons -->
-			<div class="mt-6 space-x-4">
-				<button
+			{% if account is not none %}
+			<div class="mt-4 space-x-4">
+				<!-- Buttons -->
+				<a
+					href="/flights"
 					class="bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded hover:bg-gray-300 transition"
 				>
 					Book Now
-				</button>
-			</div>
-
-			{% if account is not none %}
-			<div class="mt-4 space-x-4">
+				</a>
 				<!-- Login Button -->
-				<a href="/logout">
-					<button
-						class="bg-gray-300 text-gray-600 font-semibold py-2 px-4 rounded hover:bg-gray-400 transition"
-					>
-						Logout
-					</button>
+				<a
+					href="/logout"
+					class="bg-gray-300 text-gray-600 font-semibold py-2 px-4 rounded hover:bg-gray-400 transition"
+				>
+					Logout
 				</a>
 			</div>
 			{% else %}
 			<div class="mt-4 space-x-4">
 				<!-- Login Button -->
-				<a href="/login">
-					<button
-						class="bg-gray-300 text-gray-600 font-semibold py-2 px-4 rounded hover:bg-gray-400 transition"
-					>
-						Login
-					</button>
+				<a
+					href="/login"
+					class="bg-gray-300 text-gray-600 font-semibold py-2 px-4 rounded hover:bg-gray-400 transition"
+				>
+					Login
 				</a>
-				<a href="/sign-up">
-					<button
-						class="bg-gray-800 text-white font-semibold py-2 px-4 rounded hover:bg-gray-900 transition"
-					>
-						Sign Up
-					</button>
+				<a
+					href="/sign-up"
+					class="bg-gray-800 text-white font-semibold py-2 px-4 rounded hover:bg-gray-900 transition"
+				>
+					Sign Up
 				</a>
 			</div>
 			{% endif %}

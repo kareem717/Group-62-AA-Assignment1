@@ -20,7 +20,6 @@ flight_controller = FlightController(flight_service)
 
 JWT_SECRET = os.getenv("JWT_SECRET")
 
-
 @app.route("/", methods=["GET"])
 def index():
     return home_controller.get_home_page(session, JWT_SECRET)
@@ -45,7 +44,6 @@ def login():
         return auth_controller.authenticate(request.form, session, JWT_SECRET)
     if request.method == "GET":
         return auth_controller.get_login_form()
-
 
 @app.route("/logout", methods=["GET"])
 def logout():

@@ -1,25 +1,51 @@
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, request, send_from_directory, session
+from service.account.service import AccountService
+from presentation.auth.auth_controller import AuthController
+from presentation.home.home_controller import HomeController
+import os
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder="static")
 
-@app.route('/', methods=['GET', 'POST'])
+# Read session secret from .env file
+app.secret_key = os.getenv("SESSION_SECRET")
+
+account_service = AccountService()
+auth_controller = AuthController(account_service)
+home_controller = HomeController(account_service)
+
+JWT_SECRET = os.getenv("JWT_SECRET")
+
+
+@app.route("/", methods=["GET"])
 def index():
-    if request.method == 'POST':
-        user_input = request.form['user_input']
-        return render_template('index.html', user_input=user_input)
-    return render_template('index.html', user_input=None)
+    return home_controller.get_home_page(session, JWT_SECRET)
 
-@app.route('/static/<path:filename>')
+
+@app.route("/static/<path:filename>")
 def static_files(filename):
     return send_from_directory(app.static_folder, filename)
 
-@app.route('/sign-up', methods=['GET'])
+
+@app.route("/sign-up", methods=["GET", "POST"])
 def signup():
-    return render_template('sign-up.html')
+    if request.method == "POST":
+        return auth_controller.create_account(request.form)
+    if request.method == "GET":
+        return auth_controller.get_create_account_form()
 
-@app.route('/login', methods=['GET'])
+
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template('login.html')
+    if request.method == "POST":
+        return auth_controller.authenticate(request.form, session, JWT_SECRET)
+    if request.method == "GET":
+        return auth_controller.get_login_form()
 
-if __name__ == '__main__':
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    return auth_controller.logout()
+
+
+if __name__ == "__main__":
     app.run(debug=True, port=5007)

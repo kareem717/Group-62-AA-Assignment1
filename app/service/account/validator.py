@@ -23,6 +23,8 @@ class AccountValidator:
             error_map.add_error("password", "Must not be empty")
         elif len(account.password) < 8:
             error_map.add_error("password", "Must be at least 8 characters long")
+        elif len(account.password) > 320:
+            error_map.add_error("password", "Must be less than 321 characters")
 
         return error_map
 

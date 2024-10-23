@@ -29,10 +29,10 @@ class AccountService:
         # Check if account already exists
         existing_account = self._account_storage.get_by_email(account.email)
         if existing_account:
-            if existing_account.password == hash_password(account.password):
-                return 0, ErrorMap().add_error(
-                    "email", "Account already exists, please sign in"
-                )
+            # Prolly don't wanna say that the account already exists but wtvr
+            return 0, ErrorMap().add_error(
+                "email", "Account already exists, please sign in"
+            )
 
         error_map = self._account_validator.validate(account)
         if error_map.has_errors():
@@ -62,15 +62,13 @@ class AccountService:
     def get_account_from_session(self, session, jwt_secret):
         if "account_id" not in session:
             return None
-        
+
         encoded_account_id = session["account_id"]
 
-        decoded_data = jwt.decode(
-            encoded_account_id, jwt_secret, algorithms=["HS256"]
-        )
+        decoded_data = jwt.decode(encoded_account_id, jwt_secret, algorithms=["HS256"])
 
         account_id = decoded_data.get("account_id")
         if account_id is None:
             return None
-        
+
         return self._account_storage.get_by_id(account_id)

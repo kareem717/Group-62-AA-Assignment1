@@ -1,20 +1,24 @@
-from flask import Flask, request, send_from_directory
-import json
+from flask import Flask, request, send_from_directory, session
 from service.account.service import AccountService
-from ui.auth.auth_controller import AuthController
-from ui.home.home_controller import HomeController
+from presentation.auth.auth_controller import AuthController
+from presentation.home.home_controller import HomeController
+import os
 
 app = Flask(__name__, static_folder="static")
 
+# Read session secret from .env file
+app.secret_key = os.getenv("SESSION_SECRET")
 
 account_service = AccountService()
 auth_controller = AuthController(account_service)
 home_controller = HomeController(account_service)
 
+JWT_SECRET = os.getenv("JWT_SECRET")
+
 
 @app.route("/", methods=["GET"])
 def index():
-    return home_controller.get_home_page()
+    return home_controller.get_home_page(session, JWT_SECRET)
 
 
 @app.route("/static/<path:filename>")
@@ -33,9 +37,14 @@ def signup():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        return auth_controller.authenticate(request.form)
+        return auth_controller.authenticate(request.form, session, JWT_SECRET)
     if request.method == "GET":
         return auth_controller.get_login_form()
+
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    return auth_controller.logout()
 
 
 if __name__ == "__main__":

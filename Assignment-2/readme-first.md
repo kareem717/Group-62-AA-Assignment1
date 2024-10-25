@@ -1,4 +1,3 @@
-
 # Skyseat Service Setup and Run Guide
 
 Welcome to the Skyseat service! Follow the steps below to ensure you have the necessary environment and dependencies set up and to run the application.
@@ -6,6 +5,7 @@ Welcome to the Skyseat service! Follow the steps below to ensure you have the ne
 ## Prerequisites
 
 Make sure you have the following installed:
+
 - Python (3.7 or above)
 - Node.js and npm
 - `virtualenv` (for Python virtual environments)
@@ -13,11 +13,13 @@ Make sure you have the following installed:
 ## Step-by-Step Setup Guide
 
 ### 1. Clone the Repository
+
 First, clone the Skyseat repository to your local machine if you haven’t already:
 
 ```bash
 git clone https://github.com/kareem717/Group-62-AA-Assignment1.git
-cd https://github.com/kareem717/Group-62-AA-Assignment1.git
+cd Group-62-AA-Assignment1
+cd app
 ```
 
 ### 2. Set Up the Python Virtual Environment
@@ -33,11 +35,13 @@ python3 -m venv venv
 #### Activate the virtual environment:
 
 For **macOS/Linux**:
+
 ```bash
 source venv/bin/activate
 ```
 
 For **Windows**:
+
 ```bash
 .env\Scriptsctivate
 ```
@@ -58,6 +62,15 @@ Make sure all the Python dependencies are installed (requirements.txt is in dir 
 
 ```bash
 pip install -r app/requirements.txt
+```
+
+### 4. Setup Enivroment Variables
+
+Create a `.env` file and populate the variables:
+
+```bash
+touch app/.env
+cat app/.env.example > app/.env
 ```
 
 ### 5. Running the Application

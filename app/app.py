@@ -5,6 +5,9 @@ from presentation.home.home_controller import HomeController
 import os
 from service.flight.service import FlightService
 from presentation.flights.flight_controller import FlightController
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_folder="static")
 

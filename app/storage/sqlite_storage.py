@@ -2,7 +2,6 @@ import sqlite3
 from entities.account import Account
 from storage.storage import Storage
 from entities.flight import Flight
-from typing import Optional
 
 class SqliteStorage(Storage):
 
@@ -64,7 +63,7 @@ class SqliteAccountStorage(SqliteStorage):
         account.id = account_id
         return account_id
 
-    def get_by_email(self, email: str) -> Optional[Account]:
+    def get_by_email(self, email: str) -> Account | None:
         cursor = self._connection.cursor()
         cursor.execute(
             "SELECT * FROM accounts WHERE email = ?",
@@ -79,7 +78,7 @@ class SqliteAccountStorage(SqliteStorage):
 
         return self._row_to_account(row)
 
-    def get_by_id(self, account_id: int) -> Optional[Account]:
+    def get_by_id(self, account_id: int) -> Account | None:
         cursor = self._connection.cursor()
         cursor.execute("SELECT * FROM accounts WHERE id = ?", (account_id,))
         row = cursor.fetchone()

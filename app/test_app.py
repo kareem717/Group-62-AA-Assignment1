@@ -1,7 +1,6 @@
 import pytest
 from service.account.service import AccountService
 from entities.account import Account
-
 from app import app
 
 
@@ -85,7 +84,7 @@ def test_create_account_invalid_passwordlength(account_service):
     assert error_map.get_errors()["password"] == "Must be less than 321 characters"
 
 
-
+# test cases for login functionality
 def test_login_success(client, account_service):
     account = Account(email="invalidemail@example.com", password="password123")
     terms = True

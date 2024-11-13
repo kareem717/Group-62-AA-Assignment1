@@ -9,3 +9,4 @@ pycparser==2.22
 Werkzeug==2.0.0
 PyJWT==2.6.0
 python-dotenv==1.0.0
+coverage==7.2.1

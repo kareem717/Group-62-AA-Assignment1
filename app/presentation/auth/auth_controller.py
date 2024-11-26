@@ -16,9 +16,9 @@ class AuthController:
         )
 
         if error_map.has_errors():
-            return render_template("/auth/sign-up.html", errors=error_map)
+            return {"success": False, "errors": error_map}
         else:
-            return redirect("/")
+            return{"success": True, "user_id": account.id}
 
     def authenticate(self, incoming_data, session, jwt_secret):
         _, error_map = self.account_service.authenticate(

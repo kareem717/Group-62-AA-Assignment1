@@ -1,4 +1,4 @@
-from flask import Flask, request, send_from_directory, session
+from flask import Flask, request, send_from_directory, session, redirect, render_template
 from service.account.service import AccountService
 from presentation.auth.auth_controller import AuthController
 from presentation.home.home_controller import HomeController
@@ -9,7 +9,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__, static_folder="static")
+app = Flask(
+    __name__,
+    static_folder="static",
+    template_folder="templates"
+)
 
 # Read session secret from .env file
 app.secret_key = os.getenv("SESSION_SECRET")
@@ -36,21 +40,24 @@ def static_files(filename):
 @app.route("/sign-up", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
-        return auth_controller.create_account(request.form)
-    if request.method == "GET":
-        return auth_controller.get_create_account_form()
-
+        response = auth_controller.create_account(request.form)
+        if response.get("success"):
+            session["user_id"] = response["user_id"]
+            return redirect("/login")
+        else:
+            return render_template("auth/sign-up.html", errors=response.get("errors"))
+    return render_template("auth/sign-up.html", errors=None)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         return auth_controller.authenticate(request.form, session, JWT_SECRET)
-    if request.method == "GET":
-        return auth_controller.get_login_form()
-
+    return render_template("auth/login.html", errors=None)
+    
 @app.route("/logout", methods=["GET"])
 def logout():
-    return auth_controller.logout()
+    session.clear()
+    return redirect("/")
 
 
 @app.route("/flights", methods=["GET"])
@@ -60,3 +67,5 @@ def flights():
 
 if __name__ == "__main__":
     app.run(debug=True, port=5007)
+
+app_instance = app

@@ -1,12 +1,5 @@
-cffi==1.17.1
-click==8.1.7
-cryptography==43.0.3
 Flask==2.0.1
-itsdangerous==2.2.0
-Jinja2==3.1.4
-MarkupSafe==2.1.5
-pycparser==2.22
-Werkzeug==2.0.0
 PyJWT==2.6.0
-python-dotenv==1.0.0
-coverage==7.2.1
+PyJWT==2.10.0
+pytest==8.3.3
+python-dotenv==1.0.1

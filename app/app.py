@@ -43,21 +43,15 @@ def signup():
         response = auth_controller.create_account(request.form)
         if response.get("success"):
             session["user_id"] = response["user_id"]
-            return redirect('/')
+            return redirect("/login")
         else:
             return render_template("auth/sign-up.html", errors=response.get("errors"))
     return render_template("auth/sign-up.html", errors=None)
 
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        response = auth_controller.authenticate(request.form, session, JWT_SECRET)
-        if response.get("success"):
-            return redirect("/")
-        else:
-            return render_template("auth/login.html", error=response.get("errors"))
+        return auth_controller.authenticate(request.form, session, JWT_SECRET)
     return render_template("auth/login.html", errors=None)
     
 @app.route("/logout", methods=["GET"])

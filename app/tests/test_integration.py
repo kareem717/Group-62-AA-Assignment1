@@ -15,21 +15,22 @@ def test_user_auth_integration(client):
     """Test the integration between AuthController and AccountService"""
     response = client.post('/sign-up', data={
         'email': 'testuser@example.com',
-        'password': 'testpassword'
+        'password': 'testpassword',
+        'terms': True
     })
     assert response.status_code == 302
-
-    redirected_response = client.get('/')
-    assert redirected_response.status_code == 200
-    assert b'Welcome' in redirected_response.data
+    assert response.location.endswith('/login')
     
     login_response = client.post('/login', data={
         'email': 'testuser@example.com',
         'password': 'testpassword'
     })
-    print(login_response.data.decode('utf-8'))
-    assert login_response.status_code == 200
-    assert '<a href="/logout"' in login_response.data.decode('utf-8')
+    assert login_response.status_code == 302
+    assert login_response.location.endswith('/')
+
+    # assert that the logout button is present on the home page
+    home_response = client.get('/')
+    assert 'href="/logout"' in home_response.data.decode('utf-8')
 
 def test_flight_booking_integration(client):
     """Test the integration between FlightController and FlightService"""
